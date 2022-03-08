@@ -2,6 +2,7 @@ import { Controller, Delete, Get, Post, Put, Body, Param, UseInterceptors, Uploa
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { NewsService } from './news.service';
+import { DeleteNewsDto } from './dto/delete-news.dto'
 
 @Controller('/api/v1/news/')
 export class NewsController {
@@ -10,7 +11,6 @@ export class NewsController {
 
     @Post()
     createNews(@Body() dto: CreateNewsDto) {
-        console.log(dto);
         return this.newsService.createNews(dto);
     }
 
@@ -24,9 +24,9 @@ export class NewsController {
         return this.newsService.findAll();
     }
 
-    @Delete(':id')
-    deleteNews(@Param('id') id: number) {
-        return this.newsService.deleteNews(id);
+    @Delete('')
+    deleteNews(@Body() dto: DeleteNewsDto) {
+        return this.newsService.deleteNews(dto);
     }
 
     @Put(':id')
